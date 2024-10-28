@@ -21,8 +21,8 @@
 # #     openai_api_key = pword
 # st.title("Homelessness Support App")
 
-# # Sample data for shelters and boroughs (you can expand this list)
-# shelters = [
+# # Sample data for language and boroughs (you can expand this list)
+# language = [
 #     "Hope Haven",
 #     "Safe Harbor Shelter",
 #     "Community Comfort Center",
@@ -57,7 +57,7 @@
 #     pword = st.text_input("OpenAI API Key or Password:", type="password")
 #     submit_button = st.form_submit_button(label='Submit')
 #     # Shelter selection
-#     selected_shelter = st.selectbox("Select a Shelter:", shelters)
+#     selected_language = st.selectbox("Select a Shelter:", language)
         
 #     # Borough selection
 #     selected_borough = st.selectbox("Select a Borough:", boroughs)
@@ -161,49 +161,97 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import PromptTemplate
 import os
 
-st.title("Homelessness Support App")
+# Custom CSS for styling
+# st.markdown(
+#     """
+#     <style>
+#     .stChatMessage {
+#         background-color: #f0f0f0;
+#         border-radius: 5px;
+#         padding: 10px;
+#     }
+#     .stSidebar {
+#         background-color: #f7f7f7;
+#         border-right: 2px solid #e0e0e0;
+#     }
+#     body {
+#         font-family: 'Arial', sans-serif;
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
+
+st.markdown(
+    """
+    <style>
+    .stChatMessage {
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .stSidebar {
+        background-color: #f7f7f7;
+        border-right: 2px solid #e0e0e0;
+    }
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+    .logo {
+        display: block;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Load logo
+logo_url = "logo.png"  # Update with your logo path or URL
+
+# Display logo with animation
+# st.image(logo_url, caption="Support for Homelessness", width=300)
+st.sidebar.image(logo_url, caption="Bâtir des communautés inclusives", width=300)
+# st.sidebar.markdown(
+#     f"<div style='text-align: center;'><img src='{logo_url}' style='width: 200px;'></div>",
+#     unsafe_allow_html=True
+# )
+
+st.title("Éko")
+st.header("Obtenez des réponses sur l’itinérance dans votre région.")
+
 def main():
-    # Sample data for shelters and boroughs
-    shelters = [
-        "Hope Haven",
-        "Safe Harbor Shelter",
-        "Community Comfort Center",
-        "The Warm Welcome",
-        "Second Chance Shelter",
-        "Unity House",
-        "The Refuge Lodge",
-        "Peaceful Pathway Shelter",
-        "Caring Hearts Haven",
-        "New Beginnings Shelter",
-        "The Healing Place",
-        "Serenity Shelter",
-        "Light House Shelter",
-        "Compassion Corner",
-        "The Nesting Place",
-        "The Open Door Shelter",
-        "Oasis of Hope",
-        "Together We Rise Shelter",
-        "Shelter of Support",
-        "Friendship Haven"
+    # Sample data for language and boroughs
+    language = [
+        "Français",
+        "English"
     ]
 
     boroughs = [
-        "Borough 1",
-        "Borough 2",
-        "Borough 3",
-        # Add more boroughs as needed
+        "Le Sud Ouest",
+        "Cote-des-Neiges/Notre-Dame-de-Grace",
+        "Ville-Marie", 
+        "Le Plateau Mont-Royal", 
+        "Mercier-Hochelaga-Maisonneuve"
     ]
 
     # Create a form for user input in the sidebar
     with st.sidebar.form(key='api_key_form'):
-        st.header("Enter your OpenAI API Key or Password")
-        pword = st.text_input("OpenAI API Key or Password:", type="password")
+        st.header("OpenAI API Key")
+        pword = st.text_input("OpenAI API Key:", type="password")
         
         # Shelter selection
-        selected_shelter = st.selectbox("Select a Shelter:", shelters)
+        selected_language = st.selectbox("Language:", language)
             
         # Borough selection
-        selected_borough = st.selectbox("Select a Borough:", boroughs)
+        selected_borough = st.selectbox("Location:", boroughs)
 
         submit_button = st.form_submit_button(label='Submit')
 
@@ -221,7 +269,7 @@ def main():
         llm = ChatOpenAI(temperature=0.7, api_key=openai_api_key)
 
         # Load documents
-        file_path = "centraide-homeless-examples.pdf"
+        file_path = "BENOIT LABRE.pdf" #"centraide-homeless-examples2.pdf"
         loader = PyPDFLoader(file_path)
         docs = loader.load()
 
@@ -234,16 +282,41 @@ def main():
 
         # Set up the retriever and prompt template
         retriever = vectorstore.as_retriever()
-        prompt_template = PromptTemplate(
-            input_variables=["context", "question"],
-            template=(
-                "You are an expert on homelessness. Based on the provided context, please answer the following question in detail:\n\n"
-                "Context: {context}\n\n"
-                "Question: {question}\n\n"
-                "Please provide a comprehensive response, including causes, impacts, and potential solutions."
-            )
-        )
+        # prompt_template = PromptTemplate(
+        #     input_variables=["context", "question"],
+        #     template=(
+        #         "You are an expert on homelessness in Montreal. Based on the provided context and your knowledge, please answer the following question in detail:\n\n"
+        #         "Context: {context}\n\n"
+        #         "Question: {question}\n\n"
+        #         "Please provide a comprehensive response, including causes, impacts, and potential solutions."
+        #     )
+        # )
 
+        
+        prompt_templates = {
+            "Français": PromptTemplate(
+                input_variables=["context", "question"],
+                template=(
+                    "Vous êtes un expert sur le sans-abrisme à Montréal. En fonction du contexte fourni et de vos connaissances, veuillez répondre à la question suivante en détail :\n\n"
+                    "Contexte : {context}\n\n"
+                    "Question : {question}\n\n"
+                    "Veuillez fournir une réponse complète, y compris les causes, les impacts et les solutions potentielles. Si la question n’est pas liée au contexte, renseignez-vous davantage sur leurs préoccupations."
+                )
+            ),
+            "English": PromptTemplate(
+                input_variables=["context", "question"],
+                template=(
+                    "You are an expert on homelessness in Montreal. Based on the provided context and your knowledge, please answer the following question in detail:\n\n"
+                    "Context: {context}\n\n"
+                    "Question: {question}\n\n"
+                    "Please provide a comprehensive response, including causes, impacts, and potential solutions. If the question is not related to the context inquire more on their concerns."
+                )
+            )
+        }
+
+        # Select the appropriate prompt template based on the chosen language
+        prompt_template = prompt_templates[selected_language]
+        
         def format_docs(docs):
             return "\n\n".join(doc.page_content for doc in docs)
 
@@ -264,7 +337,7 @@ def main():
                 st.markdown(message["content"])
 
         # React to user input
-        if question := st.chat_input("Share your concerns here"):
+        if question := st.chat_input("Partagez vos préoccupations ici"):
             st.chat_message("user").markdown(question)
             st.session_state.messages.append({"role": "user", "content": question})
 
@@ -275,7 +348,10 @@ def main():
             st.session_state.messages.append({"role": "assistant", "content": response})
 
     else:
-        st.warning("Please enter your OpenAI API Key to use the app.")
+        if selected_language=='English':
+            st.warning("Please enter your OpenAI API Key to use the app.")
+        else:
+            st.warning("Veuillez saisir votre clé API OpenAI pour utiliser l’application.")
 
 if __name__ == "__main__":
     main()
