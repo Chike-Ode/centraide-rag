@@ -282,19 +282,19 @@ def main():
             "Français": PromptTemplate(
                 input_variables=["context", "question"],
                 template=(
-                    "Vous êtes un expert sur le sans-abrisme à Montréal. En fonction du contexte fourni et de vos connaissances, veuillez répondre à la question suivante en détail :\n\n"
+                    "Vous êtes un expert de l’itinérance à Montréal et vous entendez des préoccupations concernant l’impact de l’itinérance sur les personnes vivant dans la communauté.. En fonction du contexte fourni et de vos connaissances, veuillez répondre à la question suivante brièvement:\n\n"
                     "Contexte : {context}\n\n"
                     "Question : {question}\n\n"
-                    "Veuillez fournir une réponse complète, y compris les causes, les impacts et les solutions potentielles. Si la question n’est pas liée au contexte, renseignez-vous davantage sur leurs préoccupations."
+                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question. Si la question n’est pas liée au contexte, renseignez-vous davantage sur leurs préoccupations."
                 )
             ),
             "English": PromptTemplate(
                 input_variables=["context", "question"],
                 template=(
-                    "You are an expert on homelessness in Montreal. Based on the provided context and your knowledge, please answer the following question in detail:\n\n"
+                    "You are an expert on homelessness in Montreal and you hear concerns about homeless impact on people living in the community. Based on the provided context and your knowledge, please answer the following question concisely:\n\n"
                     "Context: {context}\n\n"
                     "Question: {question}\n\n"
-                    "Please provide a comprehensive response, including causes, impacts, and potential solutions. If the question is not related to the context inquire more on their concerns."
+                    "Please provide an empathetic response for both the homeless and the inquirer's concerns. If the question is not related to the context inquire more on their concerns."
                 )
             )
         }
