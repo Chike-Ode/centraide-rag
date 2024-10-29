@@ -161,26 +161,11 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import PromptTemplate
 import os
 
-# Custom CSS for styling
-# st.markdown(
-#     """
-#     <style>
-#     .stChatMessage {
-#         background-color: #f0f0f0;
-#         border-radius: 5px;
-#         padding: 10px;
-#     }
-#     .stSidebar {
-#         background-color: #f7f7f7;
-#         border-right: 2px solid #e0e0e0;
-#     }
-#     body {
-#         font-family: 'Arial', sans-serif;
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
+
+st.set_page_config(
+    page_title="Éko",
+    page_icon="logo.png"  # Use .ico format for best compatibility
+)
 
 st.markdown(
     """
