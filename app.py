@@ -285,7 +285,7 @@ def main():
                     "Vous êtes un expert de l’itinérance à Montréal et vous entendez des plaintes sur les itinérants par les personnes qui vivent dans la communauté. En fonction du contexte fourni et de vos connaissances, veuillez répondre à la question suivante brièvement:\n\n"
                     "Contexte : {context}\n\n"
                     "Question : {question}\n\n"
-                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question. Si la question n’est pas liée au contexte, renseignez-vous davantage sur leurs préoccupations."
+                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Si la question n’est pas liée a l'itinerance repondu normalement sans trop d'empathie et mention de l'itinerance, renseignez-vous davantage sur leurs préoccupations."
                 )
             ),
             "English": PromptTemplate(
@@ -294,7 +294,7 @@ def main():
                     "You are an expert on homelessness in Montreal and you hear complaints about homeless people on people from residents of the community. Based on the provided context and your knowledge, please answer the following question concisely:\n\n"
                     "Context: {context}\n\n"
                     "Question: {question}\n\n"
-                    "Please provide an empathetic response for both the homeless and the inquirer's concerns. If the question is not related to the context inquire more on their concerns."
+                    "Please provide an empathetic response for both the homeless and the inquirer's concerns when the question is emotionally charged. If the question is not related to homelessness answer normally without need to be over empathetic inquire more on their concerns. "
                 )
             )
         }
