@@ -243,6 +243,12 @@ logo_url = "logo.png"  # Update with your logo path or URL
 st.sidebar.image(logo_url, caption="Bâtir des communautés inclusives", width=300)
 
 st.title("Éko")
+st.markdown(
+    """
+    <h5 style='text-align: center;'>Built by <a href="https://www.chikeodenigbo.com" target="_blank">Chike Odenigbo</a>, Senior AI Systems Engineer</h5>
+    """,
+    unsafe_allow_html=True
+)
 st.header("Obtenez des réponses sur l’itinérance dans votre région.")
 
 def main():
@@ -361,15 +367,6 @@ def main():
         else:
             st.warning("Veuillez saisir votre clé API OpenAI pour utiliser l’application.")
 
-    # Footer with credit
-    st.markdown(
-        """
-        <footer style='text-align: center; margin-top: 20px;'>
-            <p>Built by <a href="https://www.chikeodenigbo.com" target="_blank">Chike Odenigbo</a>, Senior AI Systems Engineer</p>
-        </footer>
-        """,
-        unsafe_allow_html=True
-    )
-
 if __name__ == "__main__":
     main()
+
