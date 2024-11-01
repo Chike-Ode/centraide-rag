@@ -401,6 +401,7 @@ st.markdown(
         --background-color: #ffffff;
         --text-color: #000000;
         --chat-bg-color: #f0f0f0;
+        --chat-text-color: #000000;  /* Text color in light mode */
         --sidebar-bg-color: #f7f7f7;
         --border-color: #e0e0e0;
         --credit-color: rgba(0, 0, 0, 0.8);
@@ -410,6 +411,7 @@ st.markdown(
         --background-color: #1e1e1e;
         --text-color: #ffffff;
         --chat-bg-color: #2d2d2d;
+        --chat-text-color: #ffffff;  /* Text color in dark mode */
         --sidebar-bg-color: #2a2a2a;
         --border-color: #444444;
         --credit-color: rgba(255, 255, 255, 0.8);
@@ -419,7 +421,7 @@ st.markdown(
         background-color: var(--chat-bg-color);
         border-radius: 5px;
         padding: 10px;
-        color: var(--text-color);
+        color: var(--chat-text-color);  /* Use chat text color */
     }
     .stSidebar {
         background-color: var(--sidebar-bg-color);
@@ -529,16 +531,16 @@ def main():
         prompt_templates = {
             "Français": PromptTemplate(
                 input_variables=["context", "question"],
-                template=(  # Prompt template for French
+                template=(  
                     "Vous êtes un expert de l’itinérance à Montréal et vous entendez des plaintes sur les itinérants par les personnes qui vivent dans la communauté. En fonction du contexte fourni et de vos connaissances, veuillez répondre à la question suivante brièvement:\n\n"
                     "Contexte : {context}\n\n"
                     "Question : {question}\n\n"
-                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Varie ton niveau d'empathie dependent du niveau d'emotion dans la question. Si la question n’est pas liée a l'itinerance repondu normalement sans trop d'empathie et mention de l'itinerance, renseignez-vous davantage sur leurs préoccupations."
+                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Variez votre niveau d'empathie en fonction du niveau d'émotion dans la question. Si la question n’est pas liée à l'itinérance, répondez normalement sans trop d'empathie et renseignez-vous davantage sur leurs préoccupations."
                 )
             ),
             "English": PromptTemplate(
                 input_variables=["context", "question"],
-                template=(  # Prompt template for English
+                template=(  
                     "You are an expert on homelessness in Montreal and you hear complaints about homeless people from residents of the community. Based on the provided context and your knowledge, please answer the following question concisely:\n\n"
                     "Context: {context}\n\n"
                     "Question: {question}\n\n"
@@ -588,4 +590,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
