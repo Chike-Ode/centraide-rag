@@ -689,7 +689,13 @@ def main():
         else:
             os.environ['OPENAI_API_KEY'] = pword
             openai_api_key = pword
-        st.header("Obtenez des réponses sur l’itinérance dans votre région.")
+        if selected_language == 'English':
+            header = "Learn about homelessness in your area."
+            preoccupation = "Share your concerns here"
+        else:
+            header = "Obtenez des réponses sur l’itinérance dans votre région."
+            preoccupation = "Partagez vos préoccupations ici"
+        st.header(header)
         # Initialize the language model with the provided API key
         llm = ChatOpenAI(temperature=0.7, api_key=openai_api_key)
 
@@ -752,7 +758,7 @@ def main():
                 st.markdown(message["content"])
 
         # React to user input
-        if question := st.chat_input("Partagez vos préoccupations ici"):
+        if question := st.chat_input(preoccupation):
             st.chat_message("user").markdown(question)
             st.session_state.messages.append({"role": "user", "content": question})
 
