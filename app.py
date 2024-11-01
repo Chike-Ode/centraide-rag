@@ -724,7 +724,7 @@ def main():
                     "You are an expert on homelessness in Montreal and you hear complaints about homeless people from residents of the community. Based on the provided context and your knowledge, please answer the following question concisely:\n\n"
 "Context: {context}\n\n"
 "Question: {question}\n\n"
-"Please provide an empathetic response to the concerns of the homeless and the person asking the question when the question is emotionally charged. Respond appropriately based on the level of emotion in the question; that is, if the question is not emotionally charged, respond normally. If the question is not related to homelessness, answer normally without too much empathy and inquire further about their concerns. If the question is not about homelessness, respond normally and not as an expert on homelessness. Include only the response and nothing else."
+"Provide an empathetic response based on how emotionally charged the question or concern is. If the question is not emotionally charged, respond normally. If the question is not related to homelessness, answer normally without empathy and inquire further about their concerns. If the question is not about homelessness, respond normally and not as an expert on homelessness. Include only the response and nothing else."
                 )
             )
         }
