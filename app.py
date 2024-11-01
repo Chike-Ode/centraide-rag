@@ -650,7 +650,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.header("Obtenez des réponses sur l’itinérance dans votre région.")
+# st.header("Obtenez des réponses sur l’itinérance dans votre région.")
 
 def main():
     # Sample data for language and boroughs
@@ -689,7 +689,7 @@ def main():
         else:
             os.environ['OPENAI_API_KEY'] = pword
             openai_api_key = pword
-
+        st.header("Obtenez des réponses sur l’itinérance dans votre région.")
         # Initialize the language model with the provided API key
         llm = ChatOpenAI(temperature=0.7, api_key=openai_api_key)
 
