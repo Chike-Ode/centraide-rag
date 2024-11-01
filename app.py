@@ -184,15 +184,23 @@ def main():
             st.chat_message("user").markdown(question)
             st.session_state.messages.append({"role": "user", "content": question})
 
-            # Prepare chat history for the prompt
+            # Prepare the context from the chat history
             chat_history = "\n".join(f"{msg['role']}: {msg['content']}" for msg in st.session_state.messages)
-
-            # Invoke the RAG chain with the prepared chat history
-            response = rag_chain.invoke({"context": format_docs(docs), "question": question, "chat_history": chat_history})
             
+            # Prepare the input for rag_chain
+            context = format_docs(docs)  # or however you are defining the context
+            input_data = {
+                "context": context + "\n\n" + chat_history,  # Combine context and chat history
+                "question": question
+            }
+
+            # Invoke the rag_chain
+            response = rag_chain.invoke(input_data)  # Pass the input_data as a dictionary
+
             with st.chat_message("assistant"):
                 st.markdown(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
+
 
     else:
         if selected_language == 'English':
