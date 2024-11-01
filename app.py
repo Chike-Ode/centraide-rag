@@ -156,7 +156,7 @@ def main():
                     "En fonction du contexte fourni et l'historique de la conversation, veuillez répondre à la question brièvement:\n\n"
                     "Contexte : {context}\n\n"
                     "Question : {question}\n\n"
-                    "Veuillez fournir une réponse bref et empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Répondez de manière appropriée en fonction du niveau d’émotion de la question. Si la question n’est pas liée à l'itinérance, répondez normalement sans trop d'empathie et renseignez-vous davantage sur leurs préoccupations."
+                    "Veuillez fournir une réponse bref. Si la question a de l'emotion sois empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Répondez de manière appropriée en fonction du niveau d’émotion de la question. Si la question n’est pas liée à l'itinérance, répondez normalement sans trop d'empathie et renseignez-vous davantage sur leurs préoccupations."
                 )
             ),
             "English": PromptTemplate(
@@ -172,7 +172,7 @@ def main():
                     "Based on the provided context and this history of the conversation, please answer the following question concisely:\n\n"
                     "Context: {context}\n\n"
                     "Question: {question}\n\n"
-                    "Provide a brief and empathetic response based on how emotionally charged the question or concern is. If the question is not emotionally charged, respond normally. If the question is not related to homelessness, answer normally without empathy and inquire further about their concerns."
+                    "Provide a brief response. If the question is emotional be empathic. If the question is not emotionally charged, respond normally. If the question is not related to homelessness, answer normally without empathy and inquire further about their concerns."
                 )
             )
         }
