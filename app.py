@@ -229,7 +229,7 @@ st.markdown(
     .credit {
         font-size: 12px;  /* Smaller font size */
         text-align: left;  /* Left aligned */
-        color: rgba(0, 0, 0, 0.5);  /* Faded color */
+        color: rgba(0, 0, 0, 0.1);  /* Faded color */
         margin-bottom: 20px;  /* Space below the credit */
     }
     @keyframes fadeIn {
