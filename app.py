@@ -226,6 +226,12 @@ st.markdown(
         opacity: 0;
         animation: fadeIn 2s forwards;
     }
+    .credit {
+        font-size: 12px;  /* Smaller font size */
+        text-align: left;  /* Left aligned */
+        color: rgba(0, 0, 0, 0.5);  /* Faded color */
+        margin-bottom: 20px;  /* Space below the credit */
+    }
     @keyframes fadeIn {
         to {
             opacity: 1;
@@ -245,7 +251,9 @@ st.sidebar.image(logo_url, caption="Bâtir des communautés inclusives", width=3
 st.title("Éko")
 st.markdown(
     """
-    <h5 style='text-align: center;'>Built by <a href="https://www.chikeodenigbo.com" target="_blank">Chike Odenigbo</a>, Senior AI Systems Engineer</h5>
+    <div class="credit">
+        Built by <a href="https://www.chikeodenigbo.com" target="_blank">Chike Odenigbo</a>, Senior AI Systems Engineer
+    </div>
     """,
     unsafe_allow_html=True
 )
