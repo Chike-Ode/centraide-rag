@@ -715,7 +715,7 @@ def main():
                     "Vous êtes un expert de l’itinérance à Montréal et vous entendez des plaintes sur les itinérants par les personnes qui vivent dans la communauté. En fonction du contexte fourni et de vos connaissances, veuillez répondre à la question brièvement:\n\n"
                     "Contexte : {context}\n\n"
                     "Question : {question}\n\n"
-                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Répondez de manière appropriée en fonction du niveau d’émotion de la question, c'est a dire, une question qui n'est pas charger d'emotion et repondu normalement. Si la question n’est pas liée à l'itinérance, répondez normalement sans trop d'empathie et renseignez-vous davantage sur leurs préoccupations. Si la question n'est pas sur l'itinerance repond normalement et pas comme un expert sur l'itinerance. Inclut seulement la reponse et rien d'autre."
+                    "Veuillez fournir une réponse empathique aux préoccupations des sans-abri et de la personne qui pose la question quand la question est chargée d'émotion. Répondez de manière appropriée en fonction du niveau d’émotion de la question, c'est a dire, une question qui n'est pas charger d'emotion et repondu normalement. Si la question n’est pas liée à l'itinérance, répondez normalement sans trop d'empathie et renseignez-vous davantage sur leurs préoccupations. Si la question n'est pas sur l'itinerance repond normalement et pas comme un expert sur l'itinerance. Inclut seulement la reponse et rien d'autre ne mentionne pas que cest la reponse."
                 )
             ),
             "English": PromptTemplate(
@@ -724,7 +724,7 @@ def main():
                     "You are an expert on homelessness in Montreal and you hear complaints about homeless people from residents of the community. Based on the provided context and your knowledge, please answer the following question concisely:\n\n"
 "Context: {context}\n\n"
 "Question: {question}\n\n"
-"Provide an empathetic response based on how emotionally charged the question or concern is. If the question is not emotionally charged, respond normally. If the question is not related to homelessness, answer normally without empathy and inquire further about their concerns. If the question is not about homelessness, respond normally and not as an expert on homelessness. Include only the response and nothing else."
+"Provide an empathetic response based on how emotionally charged the question or concern is. If the question is not emotionally charged, respond normally. If the question is not related to homelessness, answer normally without empathy and inquire further about their concerns. If the question is not about homelessness, respond normally and not as an expert on homelessness. Include only the response and nothing else do not write that this is the response."
                 )
             )
         }
